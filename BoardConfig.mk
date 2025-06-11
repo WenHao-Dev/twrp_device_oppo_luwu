@@ -1,0 +1,141 @@
+#
+# Copyright (C) 2026 The Android Open Source Project
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+DEVICE_PATH := device/oppo/taylor
+
+# A/B Partitions
+AB_OTA_UPDATER := true
+AB_OTA_PARTITIONS := \
+    boot \
+    vendor_boot \
+    dtbo \
+    odm \
+    product \
+    system \
+    system_ext \
+    vbmeta \
+    vbmeta_system \
+    vbmeta_vendor \
+    vendor
+
+# A/B Partitions for oplus
+AB_OTA_PARTITIONS += \
+    my_bigball \
+    my_carrier \
+    my_company \
+    my_engineering \
+    my_heytap \
+    my_manifest \
+    my_preload \
+    my_product \
+    my_region \
+    my_stock
+
+# Assert
+TARGET_OTA_ASSERT_DEVICE := PHW110,OP5655
+
+# Architecture
+TARGET_ARCH := arm64
+TARGET_ARCH_VARIANT := armv8-a
+TARGET_CPU_ABI := arm64-v8a
+TARGET_CPU_VARIANT := generic
+
+# Bootloader
+TARGET_BOOTLOADER_BOARD_NAME := lahaina
+TARGET_NO_BOOTLOADER := true
+
+# Build Rule
+ALLOW_MISSING_DEPENDENCIES := true
+BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
+
+# Debug
+TARGET_USES_LOGD := true
+TWRP_INCLUDE_LOGCAT := true
+
+# Partitions
+BOARD_SUPER_PARTITION_GROUPS := qti_dynamic_partitions
+BOARD_SUPER_PARTITION_SIZE := 14495514624
+BOARD_QTI_DYNAMIC_PARTITIONS_PARTITION_LIST := \
+    odm product system system_ext vendor
+BOARD_QTI_DYNAMIC_PARTITIONS_SIZE := 14491320320
+
+# Kernel
+BOARD_BOOTIMG_HEADER_VERSION := 3
+BOARD_KERNEL_BASE := 0x00000000
+BOARD_KERNEL_PAGESIZE := 4096
+BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
+BOARD_KERNEL_IMAGE_NAME := Image
+TARGET_KERNEL_CONFIG := sm7350-perf_defconfig
+TARGET_KERNEL_SOURCE := kernel/oppo/sm7350
+
+# Kernel - prebuilt
+TARGET_FORCE_PREBUILT_KERNEL := true
+ifeq ($(TARGET_FORCE_PREBUILT_KERNEL),true)
+TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilts/Image
+endif
+
+# Platform
+TARGET_BOARD_PLATFORM := lahaina
+
+# Partitions
+BOARD_USES_METADATA_PARTITION := true
+BOARD_FLASH_BLOCK_SIZE := 262144 # (BOARD_KERNEL_PAGESIZE * 64)
+BOARD_BOOTIMAGE_PARTITION_SIZE := 201326592
+TARGET_USERIMAGES_USE_EXT4 := true
+TARGET_USERIMAGES_USE_F2FS := true
+
+# Recovery
+BOARD_USES_RECOVERY_AS_BOOT := true
+TARGET_NO_RECOVERY := true
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
+TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
+
+# Security patch level
+PLATFORM_SECURITY_PATCH := 2099-12-31
+VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
+PLATFORM_VERSION := 99.87.36
+PLATFORM_VERSION_LAST_STABLE := $(PLATFORM_VERSION)
+
+# Treble
+BOARD_VNDK_VERSION := current
+TARGET_COPY_OUT_VENDOR := vendor
+
+# TWRP Configurations
+TARGET_RECOVERY_QCOM_RTC_FIX := true
+TARGET_USES_MKE2FS := true
+TW_BRIGHTNESS_PATH := /sys/class/backlight/panel0-backlight/brightness
+TW_CUSTOM_CPU_TEMP_PATH := /sys/class/thermal/thermal_zone45/temp
+TW_DEFAULT_BRIGHTNESS := 1023
+TW_DEFAULT_LANGUAGE := zh_CN
+TW_ENABLE_ALL_PARTITION_TOOLS := true
+TW_EXCLUDE_APEX := true
+TW_EXCLUDE_DEFAULT_USB_INIT := true
+TW_EXCLUDE_TWRPAPP := true
+TW_EXTRA_LANGUAGES := true
+TW_FRAMERATE := 120
+TW_HAS_EDL_MODE := true
+TW_INCLUDE_FASTBOOTD := true
+TW_INCLUDE_LIBRESETPROP := true
+TW_INCLUDE_NTFS_3G := true
+TW_INCLUDE_REPACKTOOLS := true
+TW_INCLUDE_RESETPROP := true
+TW_INTERNAL_STORAGE_MOUNT_POINT := data
+TW_INTERNAL_STORAGE_PATH := /data/media
+TW_LOAD_VENDOR_MODULES := $(shell echo \"$(strip $(shell cat $(DEVICE_PATH)/modules.load.recovery))\")
+TW_MAX_BRIGHTNESS := 3515
+TW_NO_SCREEN_BLANK := true
+TW_SCREEN_BLANK_ON_BOOT := true
+TW_THEME := portrait_hdpi
+TW_H_OFFSET := -115
+TW_Y_OFFSET := 115
+
+# Verified boot
+BOARD_AVB_ENABLE := true
+BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
+BOARD_AVB_BOOT_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
+BOARD_AVB_BOOT_ALGORITHM := SHA256_RSA4096
+BOARD_AVB_BOOT_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
+BOARD_AVB_BOOT_ROLLBACK_INDEX_LOCATION := 1
