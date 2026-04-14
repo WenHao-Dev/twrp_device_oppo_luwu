@@ -1,0 +1,25 @@
+#
+# Copyright (C) 2026 The Android Open Source Project
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+# DIAG
+/dev/diag                 0660   system     oem_2901
+
+# IPA
+/dev/ipa_adpl             0660   system     oem_2905
+
+# QDSS
+/dev/byte-cntr            0660   system     oem_2902
+/dev/mhi_qdss             0660   system     oem_2902
+
+# QSEE
+/dev/qseecom              0660   system     drmrpc
+
+# SPSS
+/dev/qsee_ipc_irq_spss    0660   system     drmrpc
+/dev/spss_utils           0660   system     system
+
+# UFS RPMB BSG device node
+/dev/0:0:0:49476          0600   system     system
