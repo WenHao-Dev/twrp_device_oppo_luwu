@@ -15,15 +15,15 @@ $(call inherit-product, vendor/twrp/config/common.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 
 # Device specific configs
-$(call inherit-product, device/oppo/taylor/device.mk)
+$(call inherit-product, device/oppo/luwu/device.mk)
 
-PRODUCT_RELEASE_NAME := taylor
+PRODUCT_RELEASE_NAME := luwu
 
 PRODUCT_DEVICE := $(PRODUCT_RELEASE_NAME)
 PRODUCT_NAME := twrp_$(PRODUCT_RELEASE_NAME)
 PRODUCT_BRAND := OPPO
-PRODUCT_MODEL := PHW110
+PRODUCT_MODEL := PFFM10
 PRODUCT_MANUFACTURER := OPPO
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-	PRODUCT_NAME=PHW110
+	PRODUCT_NAME=PFFM10

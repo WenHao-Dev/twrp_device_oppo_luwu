@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-DEVICE_PATH := device/oppo/taylor
+DEVICE_PATH := device/oppo/luwu
 
 # SHIPPING API
 PRODUCT_SHIPPING_API_LEVEL := 30
