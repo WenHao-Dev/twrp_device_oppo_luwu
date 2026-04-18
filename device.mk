@@ -74,3 +74,12 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES_DEBUG += \
     update_engine_client
+
+# Vibrator
+TARGET_RECOVERY_DEVICE_MODULES += \
+    android.hardware.vibrator-V1-ndk_platform \
+    android.hardware.vibrator-V1-cpp
+
+RECOVERY_LIBRARY_SOURCE_FILES += \
+    $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.vibrator-V1-cpp.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.vibrator-V1-ndk_platform.so
